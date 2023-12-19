@@ -1,0 +1,112 @@
+
+<div id="divAdvertencia" class="full-page-div">
+    <div class="avisos">
+        <p-messages [(value)]="advertencias"  [enableService]="false" [closable]="false"></p-messages>
+    </div>
+</div>
+
+
+<div>
+    <div id="divDevTeam"  style="display: none;" class="contenedorPredeterminado">
+
+        <div class="avisos">
+            <p-messages [(value)]="avisos"  [enableService]="false" [closable]="true"></p-messages>
+        </div>
+
+        <img class="imgRMPRetroSLogo" src="../../assets/ui_images/iconFinalv1-removebg-preview.png" alt="">
+
+        <h1>Equipo de desarrollo: &nbsp;{{userDevTeam}}</h1>
+        <label class="labelPredeterminado">Esta es la página donde puedes ver la información sobre el equipo de desarrollo al que perteneces. Puedes consultar las issues
+            que hayais registrado como equipo y las posibles soluciones que os han sugerido otros usuarios/equipos, pudiendo cambiar su estado de no tener solución a 
+            solucionado si lo veis conveniente. También puedes crear nuevas reuniones, al igual que ver quién pertenece a su equipo y quién lo supervisa, 
+            con sus datos de contacto.</label><br><br>
+        
+        <p-tabView [(activeIndex)]="activeIndex">
+                <p-tabPanel>
+                    <ng-template pTemplate="header">
+                        <i class="pi pi-users"></i>
+                        <span>&nbsp;&nbsp;Compañeros de equipo</span>
+                    </ng-template>
+
+                    <div class="contenedorListaUsers">
+                        <ul id="listaUsers" class="listaUsers">
+                            <li *ngFor="let element of listaUsers" (click)="onSelectUser(element)">{{ element.userName }}&nbsp;{{element.userSurname}}</li>
+                        </ul>
+                    </div><br>
+                    <label>Email: <strong>{{emailComp}}</strong></label><br><br>
+                    <label>Nombre: <strong>{{nameComp}}</strong></label><br><br>
+                    <label>Apellido: <strong>{{surnameComp}}</strong></label><br><br>
+                    <label>Teléfono: <strong>{{tlfComp}}</strong></label><br><br>
+                    <label>Cargo: <strong>{{cargoComp}}</strong></label><br><br>        
+                    <!--Por la fecha también podriamos filtrar??-->
+                </p-tabPanel>
+
+                <p-tabPanel>
+                    <ng-template pTemplate="header">
+                        <i class="pi pi-info-circle"></i>
+                        <span>&nbsp;&nbsp;Issues registradas</span>
+                    </ng-template>
+
+                    <div class="contenedorListaUsers">
+                        <ul id="listaIssues" class="listaIssues">
+                            <li *ngFor="let element of listaIssues" (click)="onSelectIssue(element)">&nbsp;ID:&nbsp;{{ element.issId }}
+                                &nbsp;-&nbsp;Equipo:&nbsp;{{ element.issDevTeam }}
+                                &nbsp;-&nbsp;Clave:&nbsp;{{ element.issKeyWord }}
+                                &nbsp;-&nbsp;Solucionada:&nbsp;{{ element.issFixed }}
+                                &nbsp;-&nbsp;Última modificación:&nbsp;{{ element.issLastModif }}</li>
+                        </ul>
+                    </div><br>
+                    <label>ID: <strong>{{issDevTId}}</strong></label><br><br>
+                    <label>Clave: <strong>{{issDevTClave}}</strong></label><br><br>
+                    <label>¿Está solucionado?: <strong>{{issDevTFixed}}</strong></label><br><br>
+                    <label>Descripción: <strong>{{issDevTDescrip}}</strong></label><br><br>        
+                    <label>Solución: <strong>{{issDevTSolution}}</strong></label><br><br>
+                    <label>Última modificación: <strong>{{issDevTLastModif}}</strong></label><br><br>
+
+                    <button id='btnMostrarSoluciones' type="button" pButton class="p-button-primary" style="height: 0rem;font-size: small;" (click)="mostrarPosiblesSoluciones()" label="Mostrar posibles soluciones"></button><br><br> 
+                
+                </p-tabPanel>
+
+                <p-tabPanel>
+                    <ng-template pTemplate="header">
+                        <i class="pi pi-th-large"></i>
+                        <span>&nbsp;&nbsp;Reuniones</span>
+                    </ng-template>
+                    
+                    <label class="labelPredeterminado">En la sección <strong>Reuniones</strong> del menú lateral puedes consultar toda la información relacionada con tus reuniones de equipo.</label><br><br>
+                    <label class="labelPredeterminado">Puedes crear una nueva reunión si lo deseas:</label>
+                    <button id='btnNuevaMeet' type="button" pButton class="p-button-primary" style="margin-left: 10px; height: 0rem;font-size: small;" (click)="nuevaMeeting()" label="Nueva reunión"></button> 
+                        
+                </p-tabPanel>
+        </p-tabView>
+
+        <div id="divFormularioSolutsIssue" class="divFormularioEmergente" style="position: fixed;">
+            <button type="button" pButton class="p-button-rounded p-button-danger" icon="pi pi-times" style="width: 25px; height: 25px; position: absolute; top: 5px; right: 5px;" (click)="ocultarFormInfo()" ></button>
+            
+            <label style="font-size: large; margin-right: 30px;"><strong>Issue {{issDevTId}}</strong></label><br>
+            <label style="font-size: small;">Últ. modificación: {{issDevTLastModif}}</label><br><br>
+            
+            <div id="divSoluciones">
+                <div class="contenedorListaUsers" style="width: 27.5rem; height: 9rem;">
+                    <ul id="listaSolutions" class="listaIssues">
+                        <li *ngFor="let element of listaSolutions" (click)="onSelectSolution(element)"> Valoración:&nbsp;{{ element.solRatingAvg }}</li>
+                    </ul>
+                </div><br>
+                <label class="labelPredeterminado" style="margin-right: 4px;" >Valoración: <strong>{{issSolutionAVG}}</strong></label>
+                <i class="pi pi-star-fill"></i>
+                <button id="btnMarcarSolut" type="button" pButton class="p-button-primary" style="height: 0rem; font-size: smaller; margin-left: 8.4rem;" label="Marcar como solución buena"></button><br><br>
+                <label class="labelPredeterminado" style="margin-right: 10px;">Descripcion:</label>
+                    <textarea id="issSolutionDescript" class="inputPredeterminado" style="display: inline-table; width: 21.8rem;" type="textarea" cols="50" rows="3" maxlength="230" placeholder="Descripcion de la solucion propuesta" readonly="true"></textarea><br><br>
+                <label class="labelPredeterminado" style="margin-right: 10px;">Valora esta posible solución:</label>
+                    <div style="display: inline-block;"><p-rating [(ngModel)]="valStars" [cancel]="false"></p-rating></div>    
+                    <button type="button" pButton class="p-button-primary" style="height: 0rem; font-size: smaller; margin-left: 38px;" (click)="valorarSolucion()" label="Valorar"></button><br><br>         
+        
+                <button id="btnNewSol" type="button" pButton class="p-button-primary" style="height: 0rem; font-size: smaller; margin-left: 15.5rem; display: none;" (click)="registrarSolucion()" label="Registrar"></button>
+                <button id="btnOcultarRegSol" type="button" pButton class="p-button-primary" style="height: 0rem; font-size: smaller; margin-left: 10px; display: none;" (click)="desbloqRegSolucion()" label="Cancelar"></button>
+                <button id="btnMostrarRegSol" type="button" pButton class="p-button-primary" style="height: 0rem; font-size: smaller; margin-left: 16.4rem;" (click)="desbloqRegSolucion()" label="Registrar nueva solucion"></button>
+            </div>
+        </div>
+        <div id="fondoRegistro" style="display: none"></div>
+
+    </div>
+</div>

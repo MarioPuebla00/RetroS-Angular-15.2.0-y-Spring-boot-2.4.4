@@ -1,0 +1,22 @@
+<body class="bodyFondo">
+	<div class="divFormularioEmergente" style="display: inherit; z-index: 999; width: 28rem; height: 29rem;">
+		<img class="imgRMPRetroSMin" src="../../assets/ui_images/imagenInicio-removebg-preview.png" alt="">
+
+        <h2 style="text-align: center; margin: 13px 0px 20px 0px;">Restablecer contraseña</h2>
+		<div class="divBodyCentro">
+			<form id="formLogin" autocomplete="off" style="height: 16rem;">
+                <input class="inputPredeterminado inputRegistro" style="margin-bottom: 0px;" type="password" id="pwd" placeholder="Contraseña">
+                <span class="password-toggle" (click)="mostrarPwd()">
+					<i class="fa" style="transform: translate(-118%, -30%);" [class.fa-eye]="showPassword" [class.fa-eye-slash]="!showPassword"></i>
+				</span>
+                <label class="lblSubtituloInput">Debe contener al menos 8 carácteres, 1 número y una letra mayúscula</label><br><br>
+                <input class="inputPredeterminado inputRegistro" type="password" id="pwd2" placeholder="Repite contraseña"><br><br>				
+				<button type="button" [loading]="loading" pButton class="p-button-primary" style="margin: 8px 0px 0px 9.5rem; width: 7.7rem; height: 3rem;" (click)="restablecerPwd()" label="Restablecer"></button><br><br><br>
+			</form>
+		</div>
+	</div><br>
+
+	<div class="avisos">
+		<p-messages [(value)]="avisos"  [enableService]="false" [closable]="true"></p-messages>
+	</div>
+</body>

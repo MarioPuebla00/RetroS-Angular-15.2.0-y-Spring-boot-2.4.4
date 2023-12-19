@@ -1,0 +1,40 @@
+.contenedorListaUsers{
+    width: 90%;
+    border: 1.6px solid #757575;
+    height: 15rem ;
+    padding: 0px 15px 0px 0px;
+    overflow-y: scroll;
+    border-radius: 0.5rem;
+}
+
+.contenedorListaUsers::-webkit-scrollbar {
+    border-radius: 2px;
+	width: 10px;
+	background-color: #f5f5f5;
+    border-radius: 1.5rem;
+}
+
+.contenedorListaUsers::-webkit-scrollbar-thumb{
+   background-color: #42424270; 
+   border-radius: 1.5rem;
+}
+
+.contenedorListaUsers ul li{
+    background: #f5f5f5;
+    list-style-type: none;
+    border-radius: 5px;
+    height: 35px;
+    max-height: 100%;
+    margin-bottom: 4px;
+    padding: 6px;
+    font-size: 1rem;
+    overflow: hidden;
+    line-height: 20px;
+    margin-left: -27px;
+    padding-left: 15px;
+}
+
+.contenedorListaUsers ul li:hover{
+    background: #e5e5e5;
+}
+

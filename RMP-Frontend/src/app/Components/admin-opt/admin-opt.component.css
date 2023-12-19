@@ -1,0 +1,122 @@
+.labelMeet{
+    margin-left: 10px;
+}
+
+.divFormularioEmergente {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none; 
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    z-index: 9999; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+    border-radius: 0.9rem;
+}
+
+#fondoRegistro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.contenedorListaIssues{
+    width: 90%;
+    border: 1.6px solid #757575;
+    height: 200px ;
+    padding: 0px 15px 0px 0px;
+    overflow-y: scroll;
+    border-radius: 0.5rem;
+}
+
+.contenedorListaIssues::-webkit-scrollbar {
+    border-radius: 2px;
+	width: 10px;
+	background-color: #f5f5f5;
+    border-radius: 1.5rem;
+}
+
+.contenedorListaIssues::-webkit-scrollbar-thumb{
+   background-color: #42424270; 
+   border-radius: 1.5rem;
+}
+
+.contenedorListaIssues ul li{
+    background: #f5f5f5;
+    list-style-type: decimal;
+    border-radius: 5px;
+    height: 35px;
+    max-height: 100%;
+    margin-bottom: 4px;
+    padding: 6px;
+    font-size: 1rem;
+    overflow: hidden;
+    line-height: 20px;
+    margin-left: -27px;
+    padding-left: 0;
+}
+
+.contenedorListaIssues ul li:hover{
+    background: #e5e5e5;
+}
+
+.textAreaDescriptionIssue{
+    color:rgb(61, 61, 61);
+    background-color:rgb(255, 255, 255);
+    border-radius: 0.5rem;
+    border-width: 1.3px;
+    border-color: black;
+    resize: none;
+}
+
+.textAreaSolutionIssue{
+    color:rgb(61, 61, 61);
+    background-color:rgb(255, 255, 255);
+    border-radius: 0.5rem;
+    border-width: 1.3px;
+    border-color: black;
+    resize: none;
+    margin-left: 20px;
+    margin-top: 7px;
+}
+
+/* CSS MENU PESTAÑAS */
+
+.tabs-container {
+    display: flex;
+}
+  
+.tab {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+}
+
+.tab:hover {
+    background-color: #ddd;
+}
+
+.tab.active {
+    background-color: #ccc;
+}
+
+.tab-content {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 0 5px 5px 5px;
+}
+  
+.divRegUsAdm{
+    display: block; 
+    padding: 0px 20px 15px 20px;
+}
+
+

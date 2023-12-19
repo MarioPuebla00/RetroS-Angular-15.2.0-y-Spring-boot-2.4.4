@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>RetroS</title>
+        <base href="/">
+        <link rel="icon" sizes="32x32" href="assets/ui_images/iconFinalv2.png">
+        <link rel="stylesheet" href="./styles.css">
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+    <body style="background: rgb(255, 255, 255);">
+        <app-root></app-root>
+        <nav class="main-menu">
+            <ul>
+                <li>
+                    <a href="/inicio">
+                        <i class="fa fa-home fa-2x"></i>
+                        <span class="nav-text">
+                            &nbsp;Inicio
+                        </span>
+                    </a>
+                  
+                </li>
+                <li>
+                    <a href="/login">
+                        <i class="fa fa-sign-in fa-2x"></i>
+                        <span class="nav-text">
+                            &nbsp;Iniciar sesión
+                        </span>
+                    </a>
+                </li>
+                <li class="has-subnav">
+                    <a href="/registro">
+                        <i class="fa fa-pencil-square-o fa-2x"></i>
+                        <span class="nav-text">
+                            &nbsp;Registrarse
+                        </span>
+                    </a>
+                    
+                </li>
+                <li class="has-subnav">
+                    <a href="/meeting">
+                       <i class="fa fa-th fa-2x"></i>
+                        <span class="nav-text">
+                            &nbsp;Reuniones
+                        </span>
+                    </a>
+                </li>
+                <li class="has-subnav">
+                    <a href="/development-team">
+                       <i class="fa fa-users fa-2x"></i>
+                        <span class="nav-text">
+                            &nbsp;Equipo de desarrollo
+                        </span>
+                    </a>
+                   
+                </li>
+                <li>
+                    <a href="/issue">
+                          <i class="fa fa-exclamation-circle fa-2x"></i>
+                         <span class="nav-text">
+                             &nbsp;Issues
+                         </span>
+                     </a>
+                 </li>
+                <li>
+                    <a href="/userProfile">
+                        <i class="fa fa-vcard fa-2x"></i>
+                        <span class="nav-text">
+                            &nbsp;Mi perfil
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/sucio">
+                        <i class="fa fa-trash fa-2x"></i>
+                        <span class="nav-text">
+                            &nbsp;Pruebas en sucio
+                        </span>
+                    </a>
+                </li>
+                <li id="pestanaAdmin" style="display: none;">
+                    <a href="/admin-opt">
+                        <i class="fa fa-cogs fa-2x"></i>
+                         <span class="nav-text">
+                             &nbsp;Menú administrador
+                         </span>
+                     </a>
+                 </li>
+            </ul>
+
+            <ul class="logout">
+                <li>
+                    <a href="/logout">
+                        <i class="fa fa-power-off fa-2x"></i>
+                        <span class="nav-text">
+                            &nbsp;Logout
+                        </span>
+                    </a>
+                </li>  
+            </ul>
+        </nav>
+
+
+    </body>
+</html>

@@ -1,0 +1,21 @@
+
+.labelSupervisor{
+    color:rgb(61, 61, 61);
+    font-size: large;
+    margin-left: 11px;
+}
+
+.inputRegistro{
+    width: 25rem;
+    height: 3rem;
+    font-size: large;
+    margin: 10px;
+}
+
+.divRegistro{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999; /* Asegura que el modal se muestre por encima de otros elementos */
+}

@@ -1,0 +1,49 @@
+
+<body class="bodyFondo">
+    <div class="divFormularioEmergente" style="display: inherit; z-index: 999; width: 29rem; height: 33rem;">
+        <img class="imgRMPRetroSMin" src="../../assets/ui_images/imagenInicio-removebg-preview.png" alt="">
+
+        <h2 style="text-align: left; margin: 9px 0px 0px 12px;">Crea una cuenta</h2>
+
+        <div class="divRegistro">
+            <div id="div1" class="divRegistro">
+                <input class="inputPredeterminado inputRegistro" style="margin-bottom: 0px;" type="email" id="email" placeholder="Username">
+                <label class="lblSubtituloInput">Usa una cuenta de email cualquiera</label><br><br>
+                <input class="inputPredeterminado inputRegistro" type="text" id="name" placeholder="Nombre"><br><br>
+                <input class="inputPredeterminado inputRegistro" type="text" id="surname" placeholder="Apellidos"><br><br>
+               
+                <button type="button" pButton class="p-button-rounded" style="margin-left: 22.7rem; width: 3rem; height: 3rem; " (click)="nextDiv('div1','div2')" icon="pi pi-arrow-right"></button>
+            </div>
+            
+            <div id="div2" class="divRegistro" style="display: none;">
+                
+                <input class="inputPredeterminado inputRegistro" type="tel" id="tlf" placeholder="Teléfono"><br><br>
+                <input class="inputPredeterminado inputRegistro" style="margin-bottom: 0px;" type="password" id="pwd" placeholder="Contraseña">
+                <span class="password-toggle" (click)="mostrarPwd()">
+					<i class="fa" style="transform: translate(-118%, -30%);" [class.fa-eye]="showPassword" [class.fa-eye-slash]="!showPassword"></i>
+				</span>
+                <label class="lblSubtituloInput">Debe contener al menos 8 carácteres, 1 número y una letra mayúscula</label><br><br>
+                <input class="inputPredeterminado inputRegistro" type="password" id="pwd2" placeholder="Repite contraseña"><br><br>
+                <button type="button" pButton class="p-button-rounded" style="width: 3rem; height: 3rem;  margin-left: 11px;" (click)="previousDiv('div2','div1')" icon="pi pi-arrow-left"></button>
+                <button type="button" pButton class="p-button-rounded" style="margin-left: 19rem; width: 3rem; height: 3rem; " (click)="nextDiv('div2','div3')" icon="pi pi-arrow-right"></button>
+               
+            </div>
+            
+            <div id="div3" class="divRegistro" style="display: none; padding-top: 2px;">
+            
+                <input class="inputPredeterminado inputRegistro" type="text" id="company" placeholder="Empresa"><br><br>
+                <input class="inputPredeterminado inputRegistro" type="text" id="developTeam" placeholder="Equipo de desarrollo"><br><br>
+                <label class="labelSupervisor">¿Supervisas algún proyecto?&nbsp;</label>
+                <input class="inputPredeterminado" type="checkbox" id="supervisor" value="true" style="width: 40px; height: 20px; margin-bottom: 0px;"><br><br><br>
+            
+                <button type="button" pButton class="p-button-rounded" style="width: 3rem; height: 3rem;  margin-left: 11px;" (click)="previousDiv('div3','div2')" icon="pi pi-arrow-left"></button>
+                <button type="button" pButton class="p-button-primary" style="margin-left: 14.5rem; height: 3rem; " (click)="registro()" label="Registrarse"></button>
+            </div>
+	    </div><br>
+    </div>
+    
+    <div class="avisos">
+        <p-messages [(value)]="avisos"  [enableService]="false" [closable]="true"></p-messages>
+    </div>
+</body>
+

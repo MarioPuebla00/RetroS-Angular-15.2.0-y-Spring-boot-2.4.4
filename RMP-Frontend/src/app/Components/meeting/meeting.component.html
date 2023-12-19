@@ -1,0 +1,65 @@
+<div id="divAdvertencia" class="full-page-div">
+    <div class="avisos">
+        <p-messages [(value)]="advertencias"  [enableService]="false" [closable]="false"></p-messages>
+    </div>
+</div>
+
+<div>
+    <div id="divUserMeetings"  style="display: none;" class="contenedorPredeterminado">
+                <div style="text-align: end;">
+                    <img class="imgRMPRetroSLogo" src="../../assets/ui_images/iconFinalv1-removebg-preview.png" alt="">
+                </div>
+                <label class="lblTitulo">Reuniones</label>
+                <label class="labelPredeterminado">Esta es la página para ver tus reuniones de equipo. Aquí podrás consultar reuniones que hayas tenido con tu equipo de desarrollo 
+                    por fecha y pudiendo ver en que estado os quedasteis. Puedes ver la fecha en la que ocurrió la reunión.</label>
+
+                <h3>Mis reuniones de equipo</h3>
+                <label >ID de la reunión:</label> 
+                <label style="margin-left: 41px;">Fechas:</label><br>
+                <input id="idMeet" type="text" class="inputPredeterminado" placeholder="meet-xxxx-IdDevTeam">
+                <input id="meetDate1" type="date" class="inputPredeterminado" style="margin-left: 10px;">
+                <label>&nbsp;&#8211;&nbsp;</label>
+                <input id="meetDate2" type="date" class="inputPredeterminado">
+                <button type="button" pButton class="p-button-primary" style="margin-left: 20px; height: 0rem;" (click)="busquedaMeetFiltro()" label="Buscar"></button>
+                <button type="button" pButton class="p-button-primary" style="margin-left: 5px; height: 0rem;" (click)="resetFiltrosMeet()" label="Quitar filtros"></button><br><br>
+
+                <div class="contenedorListaMeets">
+                    <ul id="listaMeets" class="listaMeets">
+                        <li *ngFor="let element of listaMeetings" (click)="onSelect(element)">ID:&nbsp;{{ element.meetId }} / Equipo de desarrollo:&nbsp;{{ element.meetDevelopTeam }} 
+                            / Fecha:&nbsp;{{ element.meetDate }}</li>
+                    </ul>
+                </div>
+                <!--Por la fecha también podriamos filtrar??-->
+                <div class="avisos">
+                    <p-messages [(value)]="avisos"  [enableService]="false" [closable]="true"></p-messages>
+                </div>
+
+                <!--CUADRO PARA ACTUALIZARLAS O ELIMINARLAS, SIENDO SUPERVISOR-->
+                <div id="divFormularioMeet" class="contenedoRegistroMeet">
+
+                    <button type="button" pButton class="p-button-rounded p-button-danger" icon="pi pi-times" style="width: 25px; height: 25px; position: absolute; top: 5px; right: 5px;" (click)="ocultarFormRegistro()" ></button>
+                    <label style="font-size: large; margin-right: 30px;"><strong>Reunion {{meetIdForm}}</strong></label><br><br>
+                    <form style="height: 15rem;">
+                        <label class="labelPredeterminado" style="margin-left: 10px;">ID:</label>
+                        <label class="inputPredeterminadoClave" style="margin-left: 9rem;">Fecha:</label><br>
+                            <input id="meetNewId" class="inputPredeterminado" style="margin-left: 10px;" type="text" placeholder="meet-xxxx-IdDevTeam" readonly="true">
+                            <input id="meetNewDate" type="date" class="inputPredeterminado" style="margin-left: 22px; width: 139px;" readonly="true"><br><br>
+                        <label class="labelMeet">Compañía:</label>
+                        <label class="labelMeet" style="margin-left: 90px;">Estado:</label><br> <!--Foto cuando lo implementemos-->
+                            <input id="meetNewCompany" class="inputPredeterminado" style="margin-left: 10px;" type="text" placeholder="Empresa a la que perteneces" readonly="true">
+                            <input id="meetNewStage" style="margin-left: 22px; margin-right: 8px;" class="inputPredeterminado" type="text" placeholder="Captura en formato .png/.jpg" readonly="true"><br><br>
+                        <label class="labelMeet">Equipo de desarrollo:</label><br>           
+                            <input id="meetNewDevT" class="inputPredeterminado" style="margin-left: 10px;" type="text" placeholder="Equipo al que perteneces" readonly="true"><br><br>
+                        
+                        <button class="btnEditarMeet" (click)="editarMeeting()"> <img style="border-radius: 0.1rem;" src="assets/ui_images/iconEditar.png"></button><br>
+                    </form>
+                    <div style="text-align: end;">
+                        <button id='btnDltMeet' type="button" pButton class="p-button-primary" style="margin-left: 5px; height: 0rem; font-size: smaller;" (click)="eliminarMeeting()" label="Eliminar"></button>
+                        <button id='btnUpdtMeet' type="button" disabled pButton class="p-button-primary" style="margin-left: 5px; height: 0rem; font-size: smaller;" (click)="actualizarMeeting()" label="Actualizar"></button>
+                    </div><br>
+                </div>
+                <div id="fondoRegistro" style="display: none"></div>
+    </div><br><br>
+</div>
+
+

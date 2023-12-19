@@ -1,0 +1,77 @@
+<body class="bodyFondo">
+    <div id="divDevTeam" style="display: none;">
+        
+        <div id="divUser" class="divFormularioEmergente" style="display: none; width: 39rem; height: 29rem;">
+            <img class="imgRMPRetroSMin" src="../../assets/ui_images/imagenInicio-removebg-preview.png" alt="">
+
+            <label style="text-align: left; font-size: x-large;"><strong>Mi perfil de usuario</strong></label>
+            <button class="btnEditarEntidad" style="margin-left: 21.9rem;" (click)="editar('user')"> <img style="border-radius: 0.1rem;" src="assets/ui_images/iconEditar.png"></button><br><br>
+            
+            <label style="margin-left: 6px; font-size: initial;"><strong>Datos personales</strong></label>
+            <label style="margin-left: 10rem; font-size: initial;"><strong>Puesto de trabajo</strong></label><br><br>          
+            <label style="margin-left: 6px;">Email:</label>            
+                    <input id="inputAdmUsEmail" class="inputPredeterminado" style="margin-left: 10px;" type="text" placeholder="Email del usuario" readonly="true">
+            <label style="margin-left: 5.5rem;">Compañía:</label>            
+                <input id="inputAdmUsCompany" class="inputPredeterminado" style="margin-left: 10px; width: 10.6rem;" type="text"placeholder="Compañía para la que trabaja" readonly="true"><br><br>
+            <label style="margin-left: 6px;">Nombre:</label>            
+                <input id="inputAdmUsName" class="inputPredeterminado" style="margin-left: 10px;" type="text" placeholder="Nombre del usuario" readonly="true">           
+            <label style="margin-left: 4.5rem;">Equipo de desarrollo:</label>            
+                <input id="inputAdmUsDevT" class="inputPredeterminado" style="margin-left: 10px; width: 8.9rem;" type="text"placeholder="Equipo al que pertenece" readonly="true"><br><br>
+            
+            <label style="margin-left: 6px;">Apellidos:</label>            
+                <input id="inputAdmUsSurname" class="inputPredeterminado" style="margin-left: 10px;" type="text" placeholder="Apellidos del usuario" readonly="true">
+            <label style="margin-left: 4.5rem;">Cargo:</label>    
+                <select disabled class="inputPredeterminado" style="width: 6.5rem; margin-left: 9px;" id="inputAdmUsCargo">
+                    <option value="invalid" selected>...</option>
+                    <option value="false">Desarrollador</option>
+                    <option value="true">Supervisor</option>
+                </select><br><br>
+                
+            <label style="margin-left: 6px;">Teléfono:</label>            
+                <input id="inputAdmUsTlf" class="inputPredeterminado" style="margin-left: 10px;" type="text"placeholder="Teléfono del usuario" readonly="true"><br><br>
+
+            <div style="text-align: end;">
+                <button id='btnRstPwdUs' type="button" pButton class="p-button-primary" style="margin-left: 5px; margin-top: 0.8rem; height: 0rem; font-size: smaller;" label="Cambiar contraseña"></button>
+                <button id='btnUpdtUs' type="button" disabled pButton class="p-button-primary" style="margin-left: 5px; height: 0rem; font-size: smaller;" (click)="actualizarUsuario()" label="Actualizar datos"></button><br><br>
+            </div>
+           
+        </div>
+
+        <div id="divAdmin" class="divFormularioEmergente" style="display: none; width: 27rem; height: 29rem;">
+            <img class="imgRMPRetroSMin" src="../../assets/ui_images/imagenInicio-removebg-preview.png" alt="">
+
+            <label style="text-align: left; font-size: x-large;"><strong>Mi perfil de usuario</strong></label>
+            <button class="btnEditarEntidad" style="margin-left: 8.9rem;" (click)="editar('admin')"> <img style="border-radius: 0.1rem;" src="assets/ui_images/iconEditar.png"></button><br><br>
+            
+            <label style="margin-left: 6px; font-size: initial;"><strong>Datos personales</strong></label><br><br>          
+            <label style="margin-left: 6px;">Email:</label>            
+                    <input id="inputAdmEmail" class="inputPredeterminado" style="margin-left: 10px;" type="text" placeholder="Email del usuario" readonly="true"><br><br> 
+
+                    <label style="margin-left: 6px;">Nombre:</label>            
+                <input id="inputAdmName" class="inputPredeterminado" style="margin-left: 10px;" type="text" placeholder="Nombre del usuario" readonly="true"><br><br>         
+         
+            <label style="margin-left: 6px;">Apellidos:</label>            
+                <input id="inputAdmSurname" class="inputPredeterminado" style="margin-left: 10px;" type="text" placeholder="Apellidos del usuario" readonly="true"><br><br> 
+         
+                
+            <label style="margin-left: 6px;">Teléfono:</label>            
+                <input id="inputAdmTlf" class="inputPredeterminado" style="margin-left: 10px;" type="text"placeholder="Teléfono del usuario" readonly="true"><br><br>
+
+            <div style="text-align: end;">
+                <button id='btnRstPwdAdm' type="button" pButton class="p-button-primary" style="margin-left: 5px; margin-top: 1rem; height: 0rem; font-size: smaller;" (click)="resetPwd()" label="Cambiar contraseña"></button>
+                <button id='btnUpdtAdm' type="button" disabled pButton class="p-button-primary" style="margin-left: 5px; height: 0rem; font-size: smaller;" (click)="actualizarUsuario()" label="Actualizar datos"></button><br><br>
+            </div>
+
+        </div>
+
+        <div class="avisos">
+            <p-messages [(value)]="avisos"  [enableService]="false" [closable]="true"></p-messages>
+        </div>
+    </div>
+
+    <div id="divAdvertencia" class="full-page-div">
+        <div class="avisos">
+            <p-messages [(value)]="advertencias"  [enableService]="false" [closable]="false"></p-messages>
+        </div>
+    </div>
+</body>

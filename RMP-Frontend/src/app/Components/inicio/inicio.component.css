@@ -1,0 +1,54 @@
+
+.contenedor1{
+    background-color: rgb(255, 255, 255);
+    margin-left: 60px;
+    border-width: 10px
+}
+
+.btnRMPComenzar{
+    padding: 0.5rem 3rem;
+    font-size: 1rem;
+    border-radius: 1.5rem;
+    border-width: 3px;
+    box-shadow: 1px 2px 9px rgba(0, 0, 0, 0.4);
+    color:rgb(255, 255, 255);
+    background-color:rgb(51, 116, 255);  
+    display: block;
+    margin:auto;
+}
+
+.imgRMPRetroS{
+    width: 40%;
+    height: 40%;
+    display: block;
+    margin:auto;
+}
+
+.imgRMPReunion {
+    width: 32%;
+    height: 32%;
+    text-align: center;
+    display: block;
+    margin:auto;
+    border-radius: 1.5rem;
+    border-width: 3px;
+}
+
+.p1RMP{
+    text-align: center;
+    font-weight: bold;
+    margin-left: -50px;
+    color:rgb(61, 61, 61);
+    background-color:rgb(255, 255, 255);
+}
+
+.p234RMP{
+    text-align: center;
+    font-weight: bold;
+    color:rgb(61, 61, 61);
+    background-color:rgb(255, 255, 255);
+}
+
+
+
+

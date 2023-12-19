@@ -1,0 +1,23 @@
+<body class="bodyFondo">
+	<div class="divFormularioEmergente" style="display: inherit; z-index: 999; width: 28rem; height: 25rem;">
+		<img class="imgRMPRetroSMin" src="../../assets/ui_images/imagenInicio-removebg-preview.png" alt="">
+
+        <h2 style="text-align: center; margin: 13px 0px 20px 0px;">Recuperar contraseña</h2>
+		<p style="margin-left: 5px;">Indica tu usuario para que podamos enviarte un correo eletrónico para recuperar o cambiar la contraseña.</p> 
+		<div class="divBodyCentro">
+			<form id="formLogin" autocomplete="off" style="height: 3rem;">
+				<div class="p-inputgroup">
+					<span class="p-inputgroup-addon">
+						<i class="pi pi-user"></i>
+					</span>
+					<input pInputText  style="width: 21.5rem;" type="email" id="email" name="email" autocomplete="off" placeholder="Username" />
+				</div><br>
+				<button type="button" [loading]="loading" pButton class="p-button-primary" style="margin-left: 9rem; width: 7rem; height: 3rem;" (click)="enviarCorreo()" label="Enviar"></button><br><br><br>
+			</form>
+		</div>
+	</div><br>
+
+	<div class="avisos">
+		<p-messages [(value)]="avisos"  [enableService]="false" [closable]="true"></p-messages>
+	</div>
+</body>

@@ -1,0 +1,324 @@
+
+/* You can add global styles to this file, and also import other style files */
+*{
+  font-family: 'Titillium Web';
+  font-style: normal;
+}
+
+.password-toggle {
+  position: relative;
+  cursor: pointer;
+}
+
+.password-toggle i {
+position: absolute;
+top: 50%;
+left: 0.5rem;
+transform: translate(-100%, -30%);
+color: #999;
+}
+
+.imgRMPRetroSMin{
+  width: 8rem;
+  height: 4.5rem;
+  display: block;  
+}
+
+.imgRMPRetroSLogo{
+  width: 8rem;
+  height: 8rem;
+  display: block;  
+}
+
+/* Estilo para el MatTooltip */
+.mat-tooltip {
+  z-index: 9999;
+}
+
+.bodyFondo{
+  background-image: url("src\assets\ui_images\fondLogReg.jpg");
+  background-size: cover; 
+  background-position: center;   
+}
+
+.divBodyCentro{
+  position: absolute;
+  top: 64%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  z-index: 999;
+}
+
+.lblSubtituloInput{
+  color: darkgrey;
+  opacity: 1; 
+  font-size: smaller;
+  margin-left: 20px;
+}
+
+.avisos{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999; /* Asegura que el modal se muestre por encima de otros elementos */
+}
+
+.full-page-div{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("src\assets\ui_images\fondLogReg.jpg");
+  background-size: cover; 
+  background-position: center;
+  /* Otros estilos que desees aplicar al div */
+}
+
+.contenedorPredeterminado{
+  background-color: rgb(255, 255, 255);
+  margin-left: 80px;
+  border-width: 10px
+}
+
+.labelRMP{
+    color:rgb(61, 61, 61);
+    background-color:rgb(255, 255, 255);
+    margin-left: -50px;
+}
+
+.labelPredeterminado{
+  color:rgb(61, 61, 61);
+  background-color:rgb(255, 255, 255);
+}
+
+.inputPredeterminado{
+  color:rgb(61, 61, 61);
+  /* background-color:rgb(255, 255, 255); */
+  border-radius: 0.5rem;
+  border-width: 1.4px;
+  border-color: black;
+  width: auto;
+}
+
+.btnCerrar {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgb(236, 45, 45);
+  border-radius: 1rem;
+  font: icon;
+  padding: 3px 6px 2px 6px;
+  color: white;
+  z-index: 9999;
+}
+
+.btnEditarEntidad{
+  border-radius: 0.6rem;
+  border-width:4px;
+  color:rgb(10, 10, 10);
+  background-color:rgb(255, 255, 255);  
+  width: 43px;
+}
+
+.divFormularioEmergente {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none; /* Esconde el modal por defecto */
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+  z-index: 9996; /* Asegura que el modal se muestre por encima de otros elementos */
+  -shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Agrega sombra al modal */
+  border-radius: 0.9rem;
+}
+
+#fondoRegistro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+select[disabled] {
+  opacity: 0.7;
+  background-color: #dadada;
+  cursor: not-allowed;
+}
+
+input[readonly]{
+  opacity: 0.7;
+  background-color: #dadada;
+  cursor: not-allowed;
+}
+
+textarea[readonly]{
+  opacity: 0.7;
+  background-color: #dadada;
+  cursor: not-allowed;
+}
+/*---------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------BARRA DE NAVEGACIÓN LATERAL---------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------------------------*/
+
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css);
+
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
+.fa-2x {
+font-size: 2em;
+background:rgb(61, 61, 61);
+}
+
+.fa {
+  position: relative;
+  display: table-cell;
+  width: 60px;
+  height: 36px;
+  text-align: center;
+  vertical-align: middle;
+  font-size:20px;
+}
+
+.main-menu:hover,nav.main-menu.expanded {
+  width:250px;
+  overflow:visible;
+  
+}
+
+.main-menu {
+background:rgb(61, 61, 61);
+border-right:1px solid #000000;
+position:fixed; 
+top:0; 
+bottom:0;
+height:100%;
+left:0;
+width:60px;
+overflow:hidden;
+-webkit-transition:width .05s linear;
+transition:width .05s linear;
+-webkit-transform:translateZ(0) scale(1,1);
+z-index:99999;
+}
+
+.main-menu>ul {
+margin:7px 0;
+
+}
+
+.main-menu li {
+position:relative;
+display:block;
+width:250px;
+
+}
+
+.main-menu li>a {
+position:relative;
+display:table;
+border-collapse:collapse;
+border-spacing:0;
+color:#999;
+ font-family: arial;
+font-size: 14px;
+text-decoration:none;
+-webkit-transform:translateZ(0) scale(1,1);
+-webkit-transition:all .1s linear;
+transition:all .1s linear;
+
+}
+
+.main-menu .nav-icon {
+position:relative;
+display:table-cell;
+width:60px;
+height:36px;
+text-align:center;
+vertical-align:middle;
+font-size:18px;
+
+}
+
+.main-menu .nav-text {
+position:relative;
+display:table-cell;
+vertical-align:middle;
+width:190px;
+font-family: 'Titillium Web', sans-serif;
+background:rgb(61, 61, 61);
+}
+
+.main-menu>ul.logout {
+position:absolute;
+left:0;
+bottom:0;
+
+}
+
+.no-touch .scrollable.hover {
+overflow-y:hidden;
+
+}
+
+.no-touch .scrollable.hover:hover {
+overflow-y:auto;
+overflow:visible;
+
+}
+
+a:hover,a:focus {
+text-decoration:none;
+
+}
+
+nav {
+-webkit-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+-o-user-select:none;
+user-select:none;
+}
+
+nav ul,nav li {
+outline:0;
+margin:0;
+padding:0;
+
+}
+
+.main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
+color:rgb(154, 186, 255);
+background-color:#000000;
+
+}
+
+.area {
+float: left;
+width: 100%;
+height: 20%;
+background-color: rgb(255, 255, 255);
+}
+
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/***************************************/

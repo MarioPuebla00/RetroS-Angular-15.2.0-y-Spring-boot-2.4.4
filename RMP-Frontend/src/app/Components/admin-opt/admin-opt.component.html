@@ -1,0 +1,304 @@
+<div id="divAdvertencia" class="full-page-div">
+    <div class="avisos">
+        <p-messages [(value)]="advertencias"  [enableService]="false" [closable]="false"></p-messages>
+    </div>
+</div>
+
+<div id="divAdminMenu" style="display: none;" class="contenedorPredeterminado"><br>
+        <i class="fa fa-cogs" style="display: inline-block; font-size: 3rem; vertical-align: top;"></i>
+        <label style="font-size: 2rem; font-weight: bold; margin-left: 0.5%;">MENU DE ADMINISTRADOR</label><br><br>
+        <div class="tabs-container">
+            <div class="tab" [class.active]="activeTab === 1" (click)="changeTab(1)">Administradores</div>
+            <div class="tab" [class.active]="activeTab === 2" (click)="changeTab(2)">Usuarios</div>
+            <div class="tab" [class.active]="activeTab === 3" (click)="changeTab(3)">Issues</div>
+            <div class="tab" [class.active]="activeTab === 4" (click)="changeTab(4)">Reuniones</div>
+        </div>
+        
+        <div class="tab-content">
+            <div *ngIf="activeTab === 1" class="tab-pane">
+                <h2>Administradores</h2>
+            
+                <div class="contenedorListaIssues">
+                    <ul id="listaAdmins">
+                        <li *ngFor="let element of listaAdmins" (click)="onSelectAdmins(element)">&nbsp;{{element.admEmail}}</li>
+                    </ul>
+                </div><br>
+                <label style="margin-left: 6px;">Email:</label>            
+                    <input id="inputAdmEmail" type="text" class="inputPredeterminado" style="margin-left: 10px;"  placeholder="Email del admin" readonly="true">
+                <button class="btnEditarEntidad" style=" margin-left: 10%;" (click)="editarAdmin()"><img style="border-radius: 0.1rem;" src="assets/ui_images/iconEditar.png"></button><br><br>
+
+                <label style="margin-left: 6px;">Nombre: </label>
+                    <input id="inputAdmName" type="text" class="inputPredeterminado" style="margin-left: 10px;"  placeholder="Nombre del admin" readonly="true"><br><br>
+                <label style="margin-left: 6px;">Apellidos: </label>
+                    <input id="inputAdmSurname" type="text"  class="inputPredeterminado" style="margin-left: 10px;"placeholder="Apellidos del admin" readonly="true"><br><br>
+                <label style="margin-left: 6px;">Teléfono: </label>
+                    <input id="inputAdmTlf" type="text"  class="inputPredeterminado" style="margin-left: 10px;" placeholder="Teléfono del admin" readonly="true"><br><br>
+
+                <button type="button" pButton class="p-button-primary" style="margin-left: 5px; height: 0rem; font-size: smaller;" (click)="mostrarFormRegistroAdmin()" label="Registrar nuevo administrador"></button>
+                <button id='btnDltAdm' type="button"  pButton class="p-button-primary" style="margin-left: 5px; height: 0rem; font-size: smaller;" (click)="eliminarAdmin()" label="Eliminar"></button>
+                <button id='btnUpdtAdm' type="button" disabled pButton class="p-button-primary" style="margin-left: 5px; height: 0rem; font-size: smaller;" (click)="actualizarAdmin()" label="Actualizar"></button><br><br>
+               
+                <div id="divFormularioRegAdmin" class="divFormularioEmergente">
+                    <h3>Registrar administrador</h3>
+                    <button type="button" pButton class="p-button-rounded p-button-danger" icon="pi pi-times" style="width: 25px; height: 25px; position: absolute; top: 5px; right: 5px;" (click)="ocultarFormRegistroAdmin()" ></button>
+
+                    <form>
+                        <label class="labelPredeterminado">Email:</label>
+                            <input  id="admNewEmail" class="inputPredeterminado" style="margin-left: 0.5rem; width: 55%;" type="text" placeholder="Sigue un formato de email"><br><br>
+                        <label class="labelPredeterminado">Nombre:</label>
+                            <input id="admNewName" class="inputPredeterminado" style="margin-left: 0.5rem; width: 45%;" type="text" placeholder="Nombre"><br><br>
+                        <label class="labelPredeterminado">Apellidos:</label>
+                            <input id="admNewSurname" class="inputPredeterminado" style="margin-left: 0.5rem; width: 45%;" type="text" placeholder="Apellidos"><br><br>
+                        <label class="labelPredeterminado">Contraseña:</label>
+                            <input id="admNewPwd" class="inputPredeterminado" style="margin-left: 0.5rem; width: 45%;" type="password" placeholder="Contraseña">
+                            <i class="fa fa-info" style="margin-left: 5px; width: 10%; display:inline-block ; height: 22px; vertical-align: middle; font-size: 20px;" 
+                            title="La contraseña debe contener al menos: 8 carácteres, 1 número, 1 mayúscula y 1 minúscula"></i><br><br>
+                        <label class="labelPredeterminado">Repite la contraseña:</label>
+                            <input id="admNewPwd2" class="inputPredeterminado" style="margin-left: 0.5rem; width: 45%;" type="password" placeholder="Repite la contraseña"><br><br>
+                        <label class="labelPredeterminado">Teléfono:</label>
+                            <input id="admNewTlf" class="inputPredeterminado" style="margin-left: 0.5rem; width: 50%;" type="text" placeholder="Teléfono del nuevo admin"><br><br>
+                        <button type="button" pButton class="p-button-primary" style="float: right; height: 0rem; font-size: smaller;" (click)="registrarAdmin()" label="Registrar"></button>
+                    </form><br>
+                </div>
+                <div id="fondoRegistro" style="display: none"></div>
+            </div>
+
+            <div *ngIf="activeTab === 2" class="tab-pane">
+                <h2>Usuarios</h2>
+                <div class="contenedorListaIssues">
+                    <ul id="listaUsersAdm">
+                        <li *ngFor="let element of listaUsersAdm" (click)="onSelectUsers(element)">&nbsp;{{element.userEmail}}</li>
+                    </ul>
+                </div><br>
+                <label style="margin-left: 6px;">Email:</label>            
+                    <input id="inputAdmUsEmail" class="inputPredeterminado" style="margin-left: 10px;" type="text" placeholder="Email del usuario" readonly="true">
+                <button class="btnEditarEntidad" style="margin-left: 10%;" (click)="editarUser()"> <img style="border-radius: 0.1rem;" src="assets/ui_images/iconEditar.png"></button><br><br>
+                <label style="margin-left: 6px;">Nombre:</label>            
+                    <input id="inputAdmUsName" class="inputPredeterminado" style="margin-left: 10px;" type="text" placeholder="Nombre del usuario" readonly="true"><br><br>
+                <label style="margin-left: 6px;">Apellidos:</label>            
+                    <input id="inputAdmUsSurname" class="inputPredeterminado" style="margin-left: 10px;" type="text" placeholder="Apellidos del usuario" readonly="true"><br><br>
+                <label style="margin-left: 6px;">Teléfono:</label>            
+                    <input id="inputAdmUsTlf" class="inputPredeterminado" style="margin-left: 10px;" type="text"placeholder="Teléfono del usuario" readonly="true"><br><br>
+                <label style="margin-left: 6px;">Compañía:</label>            
+                    <input id="inputAdmUsCompany" class="inputPredeterminado" style="margin-left: 10px;" type="text"placeholder="Compañía para la que trabaja" readonly="true"><br><br>
+                <label style="margin-left: 6px;">Equipo de desarrollo:</label>            
+                    <input id="inputAdmUsDevT" class="inputPredeterminado" style="margin-left: 10px;" type="text"placeholder="Equipo al que pertenece" readonly="true"><br><br>
+                <label style="margin-left: 6px;">Cargo:</label>    
+                <select disabled class="inputPredeterminado" style="width: 9%; margin-left: 9px;" id="inputAdmUsCargo">
+                    <option value="invalid" selected>...</option>
+                    <option value="false">Desarrollador</option>
+                    <option value="true">Supervisor</option>
+                </select><br><br>
+        
+                <button id='btnRegUs' type="button" pButton class="p-button-primary" style="margin-left: 5px; height: 0rem; font-size: smaller;" (click)="mostrarFormRegistroUser()" label="Registrar nuevo usuario"></button>
+                <button id='btnDltUs' type="button" pButton class="p-button-primary" style="margin-left: 5px; height: 0rem; font-size: smaller;" (click)="eliminarUsuario()" label="Eliminar"></button>
+                <button id='btnUpdtUs' type="button" disabled pButton class="p-button-primary" style="margin-left: 5px; height: 0rem; font-size: smaller;" (click)="actualizarUsuario()" label="Actualizar"></button><br><br>
+               
+                <div id="divFormularioRegUsAdm" class="divFormularioEmergente">
+                    <h3>Registrar usuario</h3>
+                    <button type="button" pButton class="p-button-rounded p-button-danger" icon="pi pi-times" style="width: 25px; height: 25px; position: absolute; top: 5px; right: 5px;" (click)="ocultarFormRegistroUser()" ></button>
+
+                    <div id="div1" class="divRegUsAdm">
+
+                        <label>Email:&nbsp;</label><br>
+                            <input type="email" id="inputAdmNewUsEmail" class="inputPredeterminado" style="width: 15rem;"><br><br>
+                        <label>Nombre:&nbsp;</label><br>
+                            <input type="text" id="inputAdmNewUsName" class="inputPredeterminado" style="width: 15rem;"><br><br>                
+                        <label>Apellidos:&nbsp;</label><br>
+                            <input type="text" id="inputAdmNewUsSurname" class="inputPredeterminado" style="width: 15rem;"><br><br>
+
+                        <button id="nextBtn1" type="button" pButton class="p-button-rounded" icon="pi pi-arrow-right" style="float: right; width: 2rem; height: 2rem; margin-bottom: 15px;" (click)="nextDiv('div1','div2')" ></button><br>
+                    </div>
+                
+                    <div id="div2" class="divRegUsAdm" style="display: none;">
+                        
+                        <label>Teléfono:</label><br>
+                            <input type="tel" id="inputAdmNewUsTlf" class="inputPredeterminado" style="width: 15rem;"><br><br>
+                        
+                        <label>Contraseña:</label><br>
+                            <input type="password" id="inputAdmNewUsPwd" class="inputPredeterminado" style="width: 15rem;" ><br><br>
+                        
+                        <label>Repetir contraseña:</label><br>
+                            <input type="password" id="inputAdmNewUsPwd2" class="inputPredeterminado" style="width: 15rem;"><br><br>
+                            
+                        <button id="prevBtn2" type="button" pButton class="p-button-rounded" icon="pi pi-arrow-left" style="margin-left: 5px; width: 2rem; height: 2rem;" (click)="previousDiv('div2','div1')" ></button>
+                        <button id="nextBtn2" type="button" pButton class="p-button-rounded" icon="pi pi-arrow-right" style="float: right; width: 2rem; height: 2rem;" (click)="nextDiv('div2','div3')" ></button>
+                    </div>
+                
+                    <div id="div3" class="divRegUsAdm" style="display: none; padding-top: 2px;">
+                        
+                        <label>Compañía:</label><br>
+                            <input type="text" id="inputAdmNewUsCompany" class="inputPredeterminado" style="width: 15rem;"><br><br>
+                    
+                        <label>Equipo de desarrollo:</label><br>
+                            <input type="text" id="inputAdmNewUsDevT" class="inputPredeterminado" style="width: 15rem;"><br><br>
+                    
+                        <label>Supervisor:</label><br>
+                            <input style="width: 6%;" type="checkbox" id="inputAdmNewUsCargo" value="true" ><br><br>
+                            
+                        <button id="prevBtn3" type="button" pButton class="p-button-rounded" icon="pi pi-arrow-left" style="margin-left: 5px; width: 2rem; height: 2rem;" (click)="previousDiv('div3','div2')" ></button>
+                        <button id="nextBtn3" type="button" pButton class="p-button-primary" style="float: right; height: 0rem; font-size: smaller;" (click)="registroUsuario()" label="Registrar"></button>
+                        
+                    </div>
+                </div>
+                <div id="fondoRegistro" style="display: none"></div>
+            </div>
+
+            <div *ngIf="activeTab === 3" class="tab-pane">
+                <h2>Issues</h2>
+                <label>ID de la Issue:</label> 
+                <label style="margin-left: 3.8rem;">Última modificación:</label>
+                <label style="margin-left: 8.6rem;">Clave:</label>
+                <label style="margin-left: 11.7rem;">¿Tiene solución?</label><br>
+                <input id="issIdFilter" type="text" class="inputPredeterminado" placeholder="iss-xxxx-IdDevTeam">
+                <input id="fecha1Filter" class="inputPredeterminado" style="width: auto; margin-left: 1rem;" type="date">
+                <label>&nbsp;&#8211;&nbsp;</label>
+                <input id="fecha2Filter" class="inputPredeterminado" style="width: auto;" type="date" >
+                <select id="issKeyWFilter" class="inputPredeterminado" style="width: 13rem; margin-left: 1rem;" >
+                    <option value="invalid" selected>...</option>
+                    <option value="comunication">comunicación entre miembros</option>
+                    <option value="technology">tecnología desconocida</option>
+                    <option value="empathy">empatía entre compañeros</option>
+                    <option value="timeDevelop">tiempo para el desarrollo</option>
+                    <option value="speedDevelop">velocidad de desarrollo</option>
+                </select>
+                <select id="issFixedFilter" style="margin-left: 52px;" class="inputPredeterminado" style="width: 7rem; margin-left: 1rem;" >
+                    <option value="invalid" selected>...</option>
+                    <option value="false">No</option>
+                    <option value="true">Si</option>
+                </select>
+
+                <button type="button" pButton class="p-button-primary" style="margin-left: 20px; height: 0rem; font-size: smaller;" (click)="busquedaIssFiltro()" label="Buscar"></button>
+                <button type="button" pButton class="p-button-primary" style="margin-left: 5px; height: 0rem; font-size: smaller;" (click)="resetFiltrosIssue()" label="Quitar filtros"></button><br><br>
+
+                <div class="contenedorListaIssues">
+                    <ul id="listaIssuesAdm">
+                        <li *ngFor="let element of listaIssuesAdm" (click)="onSelectIssues(element)">&nbsp;ID:&nbsp;{{ element.issId }}
+                            &nbsp;-&nbsp;Equipo:&nbsp;{{ element.issDevTeam }}
+                            &nbsp;-&nbsp;Clave:&nbsp;{{ element.issKeyWord }}
+                            &nbsp;-&nbsp;Solucionada:&nbsp;{{ element.issFixed }}
+                            &nbsp;-&nbsp;Última modificación:&nbsp;{{ element.issLastModif }}</li>
+                    </ul>
+                </div><br>
+                
+                <label style="margin-left: 6px;">Iss-ID:</label>            
+                    <input id="inputIssId" class="inputPredeterminado" style="margin-left: 10px;" type="text" placeholder="iss-xxxx-IdDevTeam" readonly="true">
+                <button class="btnEditarEntidad" style=" margin-left: 10%;" (click)="editarIssue()"> <img style="border-radius: 0.1rem;" src="assets/ui_images/iconEditar.png"></button><br><br>
+                <label style="margin-left: 6px;">Iss-Clave: </label>
+                    <select disabled id="issKeyWSelect" class="inputPredeterminado" style="margin-left: 10px;">
+                        <option value="invalid" selected>...</option>
+                        <option value="comunication">comunicación entre miembros</option>
+                        <option value="technology">tecnología desconocida</option>
+                        <option value="empathy">empatía entre compañeros</option>
+                        <option value="timeDevelop">tiempo para el desarrollo</option>
+                        <option value="speedDevelop">velocidad de desarrollo</option>
+                    </select><br><br>
+                <label style="margin-left: 6px;">Descripcion: </label>
+                    <textarea id="inputIssDescrp" class="inputPredeterminado" style="margin-left: 10px; display: inline-table;" type="textarea" cols="50" rows="3" maxlength="230" placeholder="Resumen del problema" readonly="true"></textarea><br><br>
+                <label style="margin-left: 6px;">¿Está solucionado?:</label>
+                    <select disabled id="issFixedSelect" class="inputPredeterminado" style="margin-left: 10px;">
+                        <option value="invalid" selected>...</option>
+                        <option value="false">No</option>
+                        <option value="true">Si</option>
+                    </select><br><br>
+                <label style="margin-left: 6px;">Solución:</label>
+                    <textarea id="inputIssSolut" class="inputPredeterminado" style="margin-left: 10px; display: inline-table;" type="textarea" cols="50" rows="3" maxlength="230" placeholder="Posible solución" readonly="true"></textarea><br><br>
+                    
+                <button type="button" pButton class="p-button-primary" style="margin-left: 5px; height: 0rem; font-size: smaller;" (click)="mostrarFormRegistroIssue()" label="Registrar nueva Issue"></button>
+                <button id='btnDltIssue' type="button" pButton class="p-button-primary" style="margin-left: 5px; height: 0rem; font-size: smaller;" (click)="eliminarIssue()" label="Eliminar"></button>
+                <button id='btnUpdtIssue' type="button" disabled pButton class="p-button-primary" style="margin-left: 5px; height: 0rem; font-size: smaller;" (click)="actualizarIssue()" label="Actualizar"></button><br><br>
+               
+                <div id="divFormularioRegistroIssue" class="divFormularioEmergente">
+                    <h3>Registrar Issue</h3>
+                    <button type="button" pButton class="p-button-rounded p-button-danger" icon="pi pi-times" style="width: 25px; height: 25px; position: absolute; top: 5px; right: 5px;" (click)="ocultarFormRegistroIssue()" ></button>
+                    <form>
+                        <label class="labelPredeterminado">ID:</label>
+                            <input id="issAdmNewId" class="inputPredeterminado" style="margin-left: 10px;" type="text"  placeholder="iss-xxxx-IdDevTeam">
+                        <label class="labelPredeterminado" style="margin-left: 10px;">Iss-Clave:</label>
+                            <select id="issAdmNewKeyW" class="inputPredeterminado" style="margin-left: 10px;  width: 11.2rem;">
+                                <option value="invalid" selected>...</option>
+                                <option value="comunication">comunicación entre miembros</option>
+                                <option value="technology">tecnología desconocida</option>
+                                <option value="empathy">empatía entre compañeros</option>
+                                <option value="timeDevelop">tiempo para el desarrollo</option>
+                                <option value="speedDevelop">velocidad de desarrollo</option>
+                            </select><br><br>
+                        <label class="labelPredeterminado">Descripcion:</label>
+                        <label class="labelPredeterminado" style="margin-left: 33%;">&nbsp;&nbsp;¿Tiene solución?</label>
+                            <input id="issAdmNewFixed" class="inputPredeterminado" type="checkbox"  value="true"><br>
+                            <textarea id="issAdmNewDescription" class="inputPredeterminado" type="textarea"  cols="30" rows="9" maxlength="230" placeholder="Resume brevemente el problema"></textarea>
+                            <textarea id="issAdmNewSolution" class="inputPredeterminado" style="margin-left: 22px; margin-top: 0.5rem;" type="textarea" cols="30" rows="9" maxlength="230" placeholder="Si has marcado la casilla, explica tu solución aquí"></textarea><br><br>
+                        <label class="labelPredeterminado">Equipo de desarollo</label>
+                            <input id="issAdmNewDevTeam" class="inputPredeterminado" style="margin-left: 10px;" type="text"  placeholder="Equipo que la registra"><br><br>
+                        
+                        <div style="text-align: end;">
+                            <button id='btnRegMeet' type="button" pButton class="p-button-primary" style="margin-left: 5px; height: 0rem; font-size: smaller;" (click)="registrarIssue()" label="Registrar"></button>
+                        </div>
+                    </form>
+                </div> 
+                <div id="fondoRegistro" style="display: none"></div>
+            </div>
+
+            <div *ngIf="activeTab === 4" class="tab-pane">
+                <h2>Reuniones</h2>
+                
+                <label style="margin-left: 1px;">ID de la reunión:</label> 
+                <label style="margin-left: 2.4rem;">Rango de fechas:</label><br>
+                <input id="meetIdFilter" type="text" class="inputPredeterminado" placeholder="meet-xxxx-IdDevTeam">
+                <input id="fecha1Filter" class="inputPredeterminado" style="width: auto; margin-left: 10px;" type="date">
+                <label>&nbsp;&#8211;&nbsp;</label>
+                <input id="fecha2Filter" class="inputPredeterminado" style="width: auto;" type="date" > 
+                <button type="button" pButton class="p-button-primary" style="margin-left: 20px; height: 0rem; font-size: smaller;" (click)="busquedaMeetFiltro()" label="Buscar"></button>
+                <button type="button" pButton class="p-button-primary" style="margin-left: 5px; height: 0rem; font-size: smaller;" (click)="resetFiltrosMeet()" label="Quitar filtros"></button><br><br>
+
+                <div class="contenedorListaIssues">
+                    <ul id="listaReunionesAdm">
+                        <li *ngFor="let element of listaReunionesAdm" (click)="onSelectMeetings(element)">&nbsp;{{ element.meetId }}</li>
+                    </ul>
+                </div><br>
+
+                <label style="margin-left: 6px;">Meet-ID:</label>            
+                    <input id="inputMeetId" class="inputPredeterminado" style="margin-left: 10px;" type="text" placeholder="meet-xxxx-IdDevTeam" readonly="true">
+                <button class="btnEditarEntidad" style=" margin-left: 10%;" (click)="editarMeeting()"> <img style="border-radius: 0.1rem;" src="assets/ui_images/iconEditar.png"></button><br><br>
+                <label style="margin-left: 6px;">Fecha:</label>
+                    <input id="inputMeetDate" type="date" class="inputPredeterminado" style="margin-left: 10px;" readonly="true"><br><br>
+                <label style="margin-left: 6px;">Compañía:</label>
+                    <input id="inputMeetCompany" class="inputPredeterminado" style="margin-left: 10px;" type="text" placeholder="Compañía para la que trabajas" readonly="true"><br><br>
+                <label style="margin-left: 6px;">Equipo de desarrollo</label>
+                    <input id="inputMeetDevT" class="inputPredeterminado" style="margin-left: 10px;" type="text" placeholder="Equipo al que perteneces" readonly="true"><br><br>
+                <label style="margin-left: 6px;">Estado:</label>
+                    <input id="inputMeetStage" style="margin-left: 10px;" class="inputPredeterminado" type="text" placeholder="Captura formato .png/.jpg" readonly="true"><br><br>
+                    
+                <button id='btnRegMeet' type="button" pButton class="p-button-primary" style="margin-left: 5px; height: 0rem; font-size: smaller;" (click)="mostrarFormRegistroMeeting()" label="Registrar nueva meeting"></button>
+                <button id='btnDltMeet' type="button" pButton class="p-button-primary" style="margin-left: 5px; height: 0rem; font-size: smaller;" (click)="eliminarMeeting()" label="Eliminar"></button>
+                <button id='btnUpdtMeet' type="button" disabled pButton class="p-button-primary" style="margin-left: 5px; height: 0rem; font-size: smaller;" (click)="actualizarMeeting()" label="Actualizar"></button><br><br>
+
+                <!--CUADRO PARA ACTUALIZARLAS O ELIMINARLAS, SIENDO SUPERVISOR-->
+                <div id="divFormularioMeeting" class="divFormularioEmergente" style="padding: 20px 20px 0px 14px">
+
+                    <button type="button" pButton class="p-button-rounded p-button-danger" icon="pi pi-times" style="width: 25px; height: 25px; position: absolute; top: 5px; right: 5px;" (click)="ocultarFormRegistroMeeting()" ></button>
+                    <label style="font-size: large; margin-right: 30px;"><strong>Registrar reunión</strong></label><br><br>
+                    <form style="height: 15rem;">
+                        <label class="labelPredeterminado" style="margin-left: 10px;">ID:</label>
+                        <label class="inputPredeterminadoClave" style="margin-left: 9rem;">Fecha:</label><br>
+                            <input id="meetNewId" class="inputPredeterminado" style="margin-left: 10px;" type="text" placeholder="meet-xxxx-IdDevTeam">
+                            <input id="meetNewDate" type="date" class="inputPredeterminado" style="margin-left: 22px; width: 139px;"><br><br>
+                        <label class="labelMeet">Compañía:</label>
+                        <label class="labelMeet" style="margin-left: 90px;">Estado:</label><br> <!--Foto cuando lo implementemos-->
+                            <input id="meetNewCompany" class="inputPredeterminado" style="margin-left: 10px;" type="text" placeholder="Empresa a la que perteneces">
+                            <input id="meetNewStage" style="margin-left: 22px; margin-right: 8px;" class="inputPredeterminado" type="text" placeholder="Captura formato .png/.jpg"><br><br>
+                        <label class="labelMeet">Equipo de desarrollo:</label><br>           
+                            <input id="meetNewDevT" class="inputPredeterminado" style="margin-left: 10px;" type="text" placeholder=""><br><br>                        
+                    </form>
+                    <div style="text-align: end;">
+                        <button id='btnRegMeet' type="button" pButton class="p-button-primary" style="margin-left: 5px; height: 0rem; font-size: smaller;" (click)="registrarMeeting()" label="Registrar"></button>
+                    </div><br>
+                </div>
+                <div id="fondoRegistro" style="display: none"></div>
+
+            </div>
+        </div> 
+        <div class="avisos">
+            <p-messages [(value)]="avisos"  [enableService]="false" [closable]="true"></p-messages>
+        </div>
+</div>

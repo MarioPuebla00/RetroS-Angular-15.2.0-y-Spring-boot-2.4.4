@@ -1,0 +1,165 @@
+<div>
+    <div class="contenedorPredeterminado">
+        <div style="text-align: end;">
+            <img class="imgRMPRetroSLogo" src="../../assets/ui_images/iconFinalv1-removebg-preview.png" alt="">
+        </div>
+
+        <div class="avisos" style="z-index: 9999;">
+		    <p-messages [(value)]="avisos"  [enableService]="false" [closable]="true"></p-messages>
+	    </div>
+
+        <div class="avisos" style="z-index: 9999;">
+		    <p-messages [(value)]="advertencias"  [enableService]="false" [closable]="true"></p-messages>
+	    </div>
+
+        <p-toast></p-toast>
+
+        <h1>Issues</h1>
+        <label class="labelPredeterminado">Esta es la página de Issues. Aquí podrás consultar Issues que hayan registrado otros 
+            equipos y ver si te sirven para solucionar tu problema. También puedes registrar Issues que hayas tenido/hayas 
+            solucionado o sugerirle soluciones a un equipo con su Issue</label><br><br>
+        
+        <p-tabView [(activeIndex)]="activeIndex">
+            <p-tabPanel>
+                <ng-template pTemplate="header">
+                    <i class="pi pi-search"></i>
+                    <span>&nbsp;&nbsp;Buscar Issues</span>
+                </ng-template>
+        
+                <label>ID de la Issue:</label> 
+                <label style="margin-left: 3.8rem;">Última modificación:</label>
+                <label style="margin-left: 8.6rem;">Clave:</label>
+                <label style="margin-left: 11.7rem;">¿Tiene solución?</label><br>
+                <input id="issIdFilter" type="text" class="inputPredeterminado" placeholder="iss-xxxx-IdDevTeam">
+                <input id="fecha1Filter" class="inputPredeterminado" style="width: auto; margin-left: 1rem;" type="date">
+                <label>&nbsp;&#8211;&nbsp;</label>
+                <input id="fecha2Filter" class="inputPredeterminado" style="width: auto;" type="date" >
+                <select class="inputPredeterminado" style="margin-left: 1rem; width: 13rem;" id="issKeyWSelect">
+                    <option value="invalid" selected>...</option>
+                    <option value="comunication">comunicación entre miembros</option>
+                    <option value="technology">tecnología desconocida</option>
+                    <option value="empathy">empatía entre compañeros</option>
+                    <option value="timeDevelop">tiempo para el desarrollo</option>
+                    <option value="speedDevelop">velocidad de desarrollo</option>
+                </select>
+                <select style="margin-left: 1rem; width: 7rem;" class="inputPredeterminado" id="issFixedSelect">
+                    <option value="invalid" selected>...</option>
+                    <option value="false">No</option>
+                    <option value="true">Si</option>
+                </select>
+                
+                <button type="button" pButton class="p-button-primary" style="margin-left: 20px; height: 0rem;" (click)="busquedaIssFiltro()" label="Buscar"></button>
+                <button type="button" pButton class="p-button-primary" style="margin-left: 5px; height: 0rem;" (click)="resetFiltrosIssue()" label="Quitar filtros"></button><br><br>
+        
+                <div class="contenedorListaIssues">
+                <ul> 
+                    <li *ngFor="let element of listaIssues" (click)="onSelect(element)">&nbsp;ID:&nbsp;{{ element.issId }}
+                        &nbsp;-&nbsp;Equipo:&nbsp;{{ element.issDevTeam }}
+                        &nbsp;-&nbsp;Clave:&nbsp;{{ element.issKeyWord }}
+                        &nbsp;-&nbsp;Solucionada:&nbsp;{{ element.issFixed }}
+                        &nbsp;-&nbsp;Última modificación:&nbsp;{{ element.issLastModif }}</li>
+                </ul>
+                </div><br>
+            </p-tabPanel>
+        
+            <p-tabPanel>
+                <ng-template pTemplate="header">
+                    <i class="pi pi-plus-circle"></i>
+                    <span>&nbsp;&nbsp;Registrar issues</span>
+                </ng-template>
+        
+                <p>En este apartado puede registrar Issues con las que te hayas topado. Dale a <strong>Registrar</strong> para comenzar el proceso</p>
+                <button type="button" pButton class="p-button-primary" style="height: 0rem;" (click)="mostrarFormRegistro()" label="Registrar "></button>
+                <div style="height: 19rem;"></div>
+                
+            </p-tabPanel>
+        
+            <p-tabPanel>
+                <ng-template pTemplate="header">
+                    <i class="pi pi-chart-bar"></i>
+                    <span>&nbsp;&nbsp;Gráficas e informes</span>
+                </ng-template>
+                
+                
+            </p-tabPanel>
+        </p-tabView>
+
+        <div id="divFormularioInfoIssue" class="divFormularioEmergente">
+            <button type="button" pButton class="p-button-rounded p-button-danger" icon="pi pi-times" style="width: 25px; height: 25px; position: absolute; top: 5px; right: 5px;" (click)="ocultarFormInfo()" ></button>
+             
+            <label style="font-size: large; margin-right: 30px;"><strong>Issue {{issIdInfo}}</strong></label><br>
+            <label style="font-size: small;">Últ. modificación: {{issLastModif}}</label><br><br>
+
+            <div id="divSoluciones" style="display: none;">
+                <div class="contenedorListaIssues" style="width: 27.5rem; height: 9rem;">
+                    <ul id="listaSolutions" class="listaIssues">
+                        <li *ngFor="let element of listaSolutions" (click)="onSelectSolution(element)"> Valoración:&nbsp;{{ element.solRatingAvg }}</li>
+                    </ul>
+                </div><br>
+                <label class="labelPredeterminado" style="margin-right: 4px;" >Valoración: <strong>{{issSolutionAVG}}</strong></label>
+                <i class="pi pi-star-fill"></i><br><br>
+                <label class="labelPredeterminado" style="margin-right: 10px;">Descripcion:</label>
+                    <textarea id="issSolutionDescript" class="inputPredeterminado" style="display: inline-table; width: 21.8rem;" type="textarea" cols="50" rows="3" maxlength="230" placeholder="Descripcion de la solucion propuesta" readonly="true"></textarea><br><br>
+                <label class="labelPredeterminado" style="margin-right: 10px;">Valora esta posible solución:</label>
+                    <div style="display: inline-block;"><p-rating [(ngModel)]="valStars" [cancel]="false"></p-rating></div>    
+                    <button type="button" pButton class="p-button-primary" style="height: 0rem; font-size: smaller; margin-left: 38px;" (click)="valorarSolucion()" label="Valorar"></button>                
+
+        
+                <br><br><button type="button" pButton class="p-button-primary" style="height: 0rem; font-size: smaller;" (click)="volverSoluciones()" label="Volver"></button>
+                <button id="btnNewSol" type="button" pButton class="p-button-primary" style="height: 0rem; font-size: smaller; margin-left: 10.7rem; display: none;" (click)="registrarSolucion()" label="Registrar"></button>
+                <button id="btnOcultarRegSol" type="button" pButton class="p-button-primary" style="height: 0rem; font-size: smaller; margin-left: 10px; display: none;" (click)="desbloqRegSolucion()" label="Cancelar"></button>
+                <button id="btnMostrarRegSol" type="button" pButton class="p-button-primary" style="height: 0rem; font-size: smaller; margin-left: 11.6rem;" (click)="desbloqRegSolucion()" label="Registrar nueva solucion"></button>
+            </div>
+
+            <form id="formInfo" style="display: block;">
+                <label class="labelPredeterminado">ID:</label>
+                    <input class="inputPredeterminado" style="margin-left: 10px;" type="text" id="issIdInfo">
+                <label class="inputPredeterminado" style="margin-left: 10px;">Iss-Clave:</label>
+                    <input class="inputPredeterminado" style="width: 11.2rem; margin-left: 10px;" type="text" id="issSelectInfo"><br><br>
+                <label class="labelPredeterminado">Descripcion:</label>
+                <label class="labelIssFixed">&nbsp;&nbsp;¿Tiene solución?</label>
+                    <input class="inputPredeterminado" style="width: 50px; margin-left: 10px;" type="text" id="issFixedInfo"><br>
+                <textarea id="issDescriptionInfo" class="textAreaDescriptionIssue" type="textarea"  cols="30" rows="9" maxlength="230" placeholder="Resume brevemente el problema"></textarea>
+                    <textarea id="issSolutionInfo" class="textAreaSolutionIssue" type="textarea" cols="30" rows="9" maxlength="230" placeholder="Si has marcado la casilla, explica tu solución aquí"></textarea><br><br>
+                <label class="labelPredeterminado">Equipo autor:</label>
+                    <input class="inputPredeterminado" style="margin-left: 10px;" type="text" id="issDevTeam" readonly="true">
+                
+                <button type="button" pButton class="p-button-primary" style="height: 0rem; font-size: smaller; margin-left: 3.3rem;" (click)="mostrarSoluciones()" label="Mostrar soluciones"></button>
+            </form>
+
+        </div>
+        <div id="fondoRegistro" style="display: none"></div>
+
+        <div id="divFormularioRegistroIssue" class="divFormularioEmergente" style="z-index: 9990;">
+            <h3>Registrar Issue</h3>
+            <button type="button" pButton class="p-button-rounded p-button-danger" icon="pi pi-times" style="width: 25px; height: 25px; position: absolute; top: 5px; right: 5px;" (click)="ocultarFormRegistro()" ></button>
+
+            <form>
+                <label class="labelPredeterminado">ID:</label>
+                    <input class="inputPredeterminado" style="margin-left: 10px;" type="text" id="issNewId" placeholder="iss-xxxx-IdDevTeam">
+                <label class="inputPredeterminado" style="margin-left: 10px;">Iss-Clave:</label>
+                    <select class="inputPredeterminado" style="width: 11.9rem; margin-left: 8px;" id="issNewSelect">
+                        <option value="invalid" selected>...</option>
+                        <option value="comunication">comunicación entre miembros</option>
+                        <option value="technology">tecnología desconocida</option>
+                        <option value="empathy">empatía entre compañeros</option>
+                        <option value="timeDevelop">tiempo para el desarrollo</option>
+                        <option value="speedDevelop">velocidad de desarrollo</option>
+                    </select><br><br>
+                <label class="labelPredeterminado">Descripcion:</label>
+                <label class="labelIssFixed">&nbsp;&nbsp;¿Tiene solución?</label>
+                    <input class="inputPredeterminado" style="margin-left: 10px;" type="checkbox" id="issNewFixed" value="true"><br>
+                    <textarea id="issNewDescription" class="textAreaDescriptionIssue" type="textarea"  cols="30" rows="9" maxlength="230" placeholder="Resume brevemente el problema"></textarea>
+                    <textarea id="issNewSolution" class="textAreaSolutionIssue" type="textarea" cols="30" rows="9" maxlength="230" placeholder="Si has marcado la casilla, explica tu solución aquí"></textarea><br><br>
+                <div style="text-align: end;">
+                    <button type="button" pButton class="p-button-primary" style="height: 0rem; font-size: smaller;" (click)="registrarIssue()" label="Registrar "></button>
+                </div>
+
+
+            </form><br>
+        </div>
+        <div id="fondoRegistro" style="display: none"></div>
+    </div><br><br>
+
+</div>
+
